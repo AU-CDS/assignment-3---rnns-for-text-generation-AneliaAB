@@ -9,12 +9,13 @@ np.random.seed(42)
 
 import tensorflow as tf
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from model import padded_sequences, tokenizing, gather_folder
-
-filepath = f"../../{gather_folder()}/"
+from model import padded_sequences, tokenizing, filepath
 
 predictors, label, max_sequence_len, total_words = padded_sequences(filepath)
 tokenizer, inp_sequences = tokenizing(filepath)
+
+import warnings
+warnings.filterwarnings("ignore")
 
 # %%
 filepath = "../out/"
@@ -43,6 +44,6 @@ def generate_text(seed_text, next_words, model, max_sequence_len):
     return seed_text.title()
 
 # %%
-print(generate_text(input("write a word to generate new text: "), 5, model, max_sequence_len))
+print(generate_text(input("Write a word to generate new text: "), int(input("How many words do you wish to generate? : ")), model, max_sequence_len))
 
 
