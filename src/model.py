@@ -36,6 +36,7 @@ def gather_folder():
 # Load data and create corpus
 
 # %%
+#in-class function
 def load_data(filepath):
     data_dir = os.path.join(filepath)
 
@@ -142,33 +143,14 @@ def save_model(filepath):
     model = create_model(filepath)
     export_path = "../out/"
 
-    #history = model.fit(predictors, 
-    #                label, 
-    #                epochs=100,
-    #                batch_size=128, 
-    #                verbose=1)
+    history = model.fit(predictors, 
+                    label, 
+                    epochs=100,
+                    batch_size=128, 
+                    verbose=1)
     
     tf.keras.saving.save_model(model, export_path, overwrite=True, save_format=None)
 
 # %%
 save_model(filepath)
-
-def generate_text(seed_text, next_words, model, max_sequence_len):
-    predictors, label, max_sequence_len, total_words = padded_sequences(filepath)
-    for _ in range(next_words):
-        token_list = tokenizer.texts_to_sequences([seed_text])[0]
-        token_list = pad_sequences([token_list], 
-                                    maxlen=max_sequence_len-1, 
-                                    padding='pre')
-        predicted = np.argmax(model.predict(token_list),
-                                            axis=1)
-        
-        output_word = ""
-        for word,index in tokenizer.word_index.items():
-            if index == predicted:
-                output_word = word
-                break
-        seed_text += " "+output_word
-    return seed_text.title()
-
 
