@@ -60,4 +60,4 @@ Libraries needed for this project
 created enviorment and installs the libraries in the requirements.txt file
 
 ## Challenges 
-One of the challenges I faced with this assignment was writing the python script as clean and compact as possible. What I'd like to improve in this project is the **generating_text.py** script by splitting it into two scripts - one loading the data and tokenizing; and another script creating and saving the trained model. I had trouble getting the two scripts to communicate with each other, that's why I decided to combine everything into one python script, which makes it confusing and difficult to follow.
+One of the challenges I faced with this assignment was writing the python script as clean and compact as possible. What I'd like to improve in this project is the **generating_text.py** script by splitting it into two scripts - one loading the data and tokenizing; and another script creating and saving the trained model. I had trouble getting the two scripts to communicate with each other, and that's why I decided to combine everything into one python script.
