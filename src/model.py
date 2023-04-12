@@ -29,7 +29,7 @@ def clean_text(txt):
 
 # %%
 def gather_folder():
-    folder = input("write the name of the folder that you would like to use (ex. news_data)")
+    folder = input("write the name of the folder that you would like to use (ex. news_data): ")
     return folder
 
 # %% [markdown]
