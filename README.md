@@ -1,38 +1,63 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-8d59dc4de5201274e310e4c54b9627a8934c3b88527886e3b421487c677d23eb.svg)](https://classroom.github.com/a/5f7lMH9Y)
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10587778&assignment_repo_type=AssignmentRepo)
 # Assignment 3 - Language modelling and text generation using RNNs
 
+## Project Description by Ross
 Text generation is hot news right now!
 
-For this assignemnt, you're going to create some scripts which will allow you to train a text generation model on some culturally significant data - comments on articles for *The New York Times*. You can find a link to the data [here](https://www.kaggle.com/datasets/aashita/nyt-comments).
+For this assignment, you're going to create some scripts which will allow you to train a text generation model on some culturally significant data - comments on articles for *The New York Times*. You can find a link to the data [here](https://www.kaggle.com/datasets/aashita/nyt-comments).
 
-You should create a collection of scripts which do the following:
+You should create a collection of scripts that do the following:
 
 - Train a model on the Comments section of the data
   - [Save the trained model](https://www.tensorflow.org/api_docs/python/tf/keras/models/save_model)
 - Load a saved model
   - Generate text from a user-suggested prompt
 
-## Objectives
+## Data
+This project uses headlines from the New York Times articles instead of comments due to problems loading the comments data. Therefore the data used in this project is different from the data described above. You can find a link to the New York Times articles here: https://www.kaggle.com/datasets/aashita/nyt-comments (same link as above).
 
-Language modelling is hard and training text generation models is doubly hard. For this course, we lack somewhat the computationl resources, time, and data to train top-quality models for this task. So, if your RNNs don't perform overwhelmingly, that's fine (and expected). Think of it more as a proof of concept.
+## How to Install and Run the Project
+Installation:
+1. First you need to clone the repository and load the article data into a separate folder, fx. under the name **news_data**
+2. Navigate from the root of your repository to **assignment-3---rnns-for-text-generation-AneliaAB**
+ ```cd assignment-3---rnns-for-text-generation-AneliaAB```
+3. Run the setup file, which will install all the requirements
+ ```bash setup.sh```
 
-- Using TensorFlow to build complex deep learning models for NLP
-- Illustrating that you can structure repositories appropriately
-- Providing clear, easy-to-use documentation for your work.
+Now you are ready to run the scripts:
+1. Run the generating_text script
+  ```python generating_text.py```
+2. Answer the prompts in the terminal
+- write the name of the folder that you would like to use (ex. news_data)
+- Write a word to generate new text
+- How many words do you wish to generate?
 
-## Some tips
+Tip! Example answers to the prompts:
+- news_data 
+- danish 
+- 4
 
-One big thing to be aware of - unlike the classroom notebook, this assignment is working on the *Comments*, not the articles. So two things to consider:
+If you have trouble loading the data:
+The script takes the name of the data folder (via a prompt in the terminal), which the user loads themselves in a separate folder, and puts it into this filepath: ```filepath = f"../../{gather_folder()}/"```. Be aware that you will need to change the filepath in the **model.py** script if the filepath to your data folder is different OR write the path to your folder inside the prompt instead of just the name of your folder. 
 
-1) The Comments data might be structured differently to the Articles data. You'll need to investigate that;
-2) There are considerably more Comments than articles - plan ahead for model training!
+## Repositery description
+```out```
+- the saved model is located in the out folder. this model is created in the model.py script and loaded and used in the **generating_text.py** script.
 
-## Additional pointers
+```src```
+two python scripts
+- **model.py** loads the data and creates the model
+- **generating_text.py** generates text from a user-suggested prompt
 
-- Make sure not to try to push the data to Github!
-- *Do* include the saved models that you output
-- Make sure to structure your repository appropriately
-  - Include a readme explaining relevant info
-    - E.g where does the data come from?
-    - How do I run the code?
-- Make sure to include a requirements file, etc...
+```README.md```
+Description of the assignment, instructions on how to install and run the project, and challenges. 
+
+```requirements.txt```
+Libraries needed for this project
+
+```setup.sh```
+created enviorment and installs the libraries in the requirements.txt file
+
+## Challenges 
+One of the challenges I faced with this assignment was writing the python script as clean and compact as possible. What I'd like to improve in this project is the **generating_text.py** script by splitting it into two scripts - one loading the data and tokenizing; and another script creating and saving the trained model. I had trouble getting the two scripts to communicate with each other, and that's why I decided to combine everything into one python script.
