@@ -2,7 +2,7 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10587778&assignment_repo_type=AssignmentRepo)
 # Assignment 3 - Language modelling and text generation using RNNs
 
-## Project Description by Ross
+## DESCRIPTION
 Text generation is hot news right now!
 
 For this assignment, you're going to create some scripts which will allow you to train a text generation model on some culturally significant data - comments on articles for *The New York Times*. You can find a link to the data [here](https://www.kaggle.com/datasets/aashita/nyt-comments).
@@ -14,50 +14,36 @@ You should create a collection of scripts that do the following:
 - Load a saved model
   - Generate text from a user-suggested prompt
 
-## Data
-This project uses headlines from the New York Times articles instead of comments due to problems loading the comments data. Therefore the data used in this project is different from the data described above. You can find a link to the New York Times articles here: https://www.kaggle.com/datasets/aashita/nyt-comments (same link as above).
+## METHODS
+This project consists of two scripts. One that trains the classifier (model.py) and one that generates an output based on a prompt (generate_text.py). Some in-class functions are included in the final script. <br >
 
-## How to Install and Run the Project
-Installation:
-1. First you need to clone the repository and load the article data into a separate folder, fx. under the name **news_data**
-2. Navigate from the root of your repository to **assignment-3---rnns-for-text-generation-AneliaAB**
- ```cd assignment-3---rnns-for-text-generation-AneliaAB```
-3. Run the setup file, which will install all the requirements
- ```bash setup.sh```
+**Training the model**
+This project begins with loading and cleaning the data. First, the headlines from all articles are extracted and made lowercase to create the corpus. The headlines are then ran through the functions ```tokenizing()``` and ```padded_sequences()``` to prepare them for the model training. The model is generated in the ```create_model()``` function and it is trained and saved in the ```out``` folder.
 
-Now you are ready to run the scripts:
-1. Run the generating_text script
-  ```python generating_text.py```
-2. Answer the prompts in the terminal
-- write the name of the folder that you would like to use (ex. news_data)
-- Write a word to generate new text
-- How many words do you wish to generate?
+**Generating text from a user-generated prompt**
+The ```generating_text.py``` script loads the trained model from the ```out``` folder and executes a function, which predicts an output based on a prompt. Based on the prompt the model predicts what the next word most likely would be, generating a sentence of x number of words. When running the script, the user must input a word to generate new text and the number of words to follow. 
 
-Tip! Example answers to the prompts:
-- news_data 
-- danish 
-- 4
+## HOW TO INSTALL AND RUN THE PROJECT
+**Get the data:**<br >
 
-If you have trouble loading the data:
-The script takes the name of the data folder (via a prompt in the terminal), which the user loads themselves in a separate folder, and puts it into this filepath: ```filepath = f"../../{gather_folder()}/"```. Be aware that you will need to change the filepath in the **model.py** script if the filepath to your data folder is different OR write the path to your folder inside the prompt instead of just the name of your folder. 
+The data is NOT included in the repository of this project and needs to be loaded separately. The script takes this into account. However, the script expects an unzipped folder. 
+- You can find a link to the data here. You may need to unzip the data first, which is not included in the script. <br >
+Make sure that the data is loaded *outside* of this repository in a name of your choice, which you will need to provide when running the scripts.
 
-## Repositery description
-```out```
-- the saved model is located in the out folder. this model is created in the model.py script and loaded and used in the **generating_text.py** script.
+**Installation:**
+1. First you need to clone this project repository 
+2. Navigate from the root of your directory to ```assignment-3---rnns-for-text-generation-AneliaAB```
+3. Run the setup file, which will install all the requirements by writing ```bash setup.sh``` in the terminal
 
-```src```
-two python scripts
-- **model.py** loads the data and creates the model
-- **generating_text.py** generates text from a user-suggested prompt
+**Run the script:**<br>
+4. Navigate to the folder src by writing cd ```src``` in the terminal, assuming your current directory is ```assignment-3---rnns-for-text-generation-AneliaAB```
 
-```README.md```
-Description of the assignment, instructions on how to install and run the project, and challenges. 
+You can choose to run both scripts in this order: first ```model.py```, second ```generating_text.py```. However, note that when running the script ```generaiting_text.py``` both model.py and generating_text.py will be executed automatically, so there is no need to manually run both scripts in the terminal.
 
-```requirements.txt```
-Libraries needed for this project
+5.	Run the script by writing ```python generating_text.py``` in the terminal <br >
+- Firstly, the user will be asked to provide a folder name of where the data is located. Note that the folder needs to be loaded outside of the repository and include ONLY .cvs files (13 total). 
+- Secondly the user will need to provide a word which will be used to generate a sentence.
+- Thirdly the user will need to provide a number (of numerical value) of words to be generated. 
 
-```setup.sh```
-created enviorment and installs the libraries in the requirements.txt file
-
-## Challenges 
-One of the challenges I faced with this assignment was writing the python script as clean and compact as possible. What I'd like to improve in this project is the **generating_text.py** script by splitting it into two scripts - one loading the data and tokenizing; and another script creating and saving the trained model. I had trouble getting the two scripts to communicate with each other, and that's why I decided to combine everything into one python script.
+## DISCUSSION OF RESULTS
+The results are saved in the ```out``` folder, in the form of the trained model. When loaded in the ```generate_text.py``` script, the model is able to generate sentences based on user input. The user is asked to both provide a word and a word-count, which gives flexibility and the user can play around with different word and sentence lengths.
